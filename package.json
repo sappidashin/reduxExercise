@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/sappidashin/reduxExercise#readme",
   "dependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.10.4",
+    "babel-plugin-object-assign": "^1.2.1",
     "redux": "^3.5.2"
   }
 }
