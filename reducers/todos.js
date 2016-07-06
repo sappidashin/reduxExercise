@@ -1,4 +1,4 @@
-import { ADD_TODO, COMPLETE_TODO } from '../constants/ActionTypes'
+import { ADD_TODO, COMPLETED_TODO } from '../constants/ActionTypes'
 
 const todo = (state, action) => {
 	switch(action.type)
@@ -6,11 +6,12 @@ const todo = (state, action) => {
 		case ADD_TODO:
 			return {
 						text:action.text,
-						completed: false
+						completed: false,
+						id: action.id
 					};
-		case COMPLETE_TODO:
-			if(id === action.id)
-				return Object.assign({}, state, {completed: true});
+		case COMPLETED_TODO:
+			if(state.id === action.id)
+				return Object.assign({}, state, {completed: !state.completed});
 			return state;
 		default:
 			return state;
@@ -21,11 +22,11 @@ const todos = (state = [], action) => {
 	switch(action.type){
 		case ADD_TODO:
 			return [
-					...state.todos,
-					todo(state, action)
+					...state,
+					todo(undefined, action)
 				];
-		case COMPLETE_TODO:
-			return state.todos.map((t id) => todo(t, action));
+		case COMPLETED_TODO:
+			return state.map(t => todo(t, action));
 		default:
 			return state;
 	}
